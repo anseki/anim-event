@@ -1,0 +1,35 @@
+{
+  "name": "anim-event",
+  "version": "0.0.1",
+  "description": "Event Manager for Animation",
+  "keywords": [
+    "animation",
+    "event",
+    "performance",
+    "throttle",
+    "debounce",
+    "requestAnimationFrame",
+    "scroll",
+    "resize",
+    "mousemove",
+    "drag"
+  ],
+  "main": "anim-event.js",
+  "homepage": "https://github.com/anseki/anim-event",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anseki/anim-event.git"
+  },
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "MIT",
+  "authors": [
+    "anseki <AnSeki.aff@gmail.com>"
+  ]
+}

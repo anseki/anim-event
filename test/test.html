@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style>
+
+body {
+  margin: 0;
+}
+
+#stage {
+  height: 96px;
+  background-color: #ddd;
+}
+
+.view {
+  position: relative;
+  margin-top: 8px;
+}
+
+.bar {
+  width: 0;
+  height: 24px;
+  background-color: #0f0;
+}
+
+.count {
+  position: absolute;
+  left: 2px;
+  top: 1px;
+  font-size: 22px;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  line-height: 1;
+}
+
+  </style>
+
+</head>
+<body>
+
+  <div id="stage"></div>
+  <div class="view">
+    <div id="bar1" class="bar"></div>
+    <div id="count1" class="count"></div>
+  </div>
+  <div class="view">
+    <div id="bar2" class="bar"></div>
+    <div id="count2" class="count"></div>
+  </div>
+
+  <script src="../anim-event.js"></script>
+
+  <script>
+
+var stage = document.getElementById('stage'),
+  bar1 = document.getElementById('bar1'),
+  bar2 = document.getElementById('bar2'),
+  count1 = document.getElementById('count1'),
+  count2 = document.getElementById('count2'),
+  style1 = bar1.style,
+  style2 = bar2.style,
+  countValue1 = 0,
+  countValue2 = 0;
+
+// Normal
+stage.addEventListener('mousemove', function(event) {
+  style1.width = event.pageX + 'px';
+  count1.textContent = ++countValue1;
+}, false);
+
+// AnimEvent
+stage.addEventListener('mousemove', AnimEvent.add(function(event) {
+  style2.width = event.pageX + 'px';
+  count2.textContent = ++countValue2;
+}), false);
+
+  </script>
+
+</body>
+</html>
