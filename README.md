@@ -10,13 +10,13 @@ AnimEvent works like [lodash's `throttle` function](https://lodash.com/docs#thro
 
 ## Usage
 
-Load AnimEvent into a web page.
+Load AnimEvent into your web page.
 
 ```html
 <script src="anim-event.min.js"></script>
 ```
 
-Pass `AnimEvent.add(listener)` instead of `listener` to [`addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+To register your event listener, pass `AnimEvent.add(listener)` instead of `listener` to [`addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
 For example, replace first code with second code:
 
