@@ -8,7 +8,9 @@
 
 /* exported AnimEvent */
 
-;var AnimEvent = (function() { // eslint-disable-line no-extra-semi
+;var AnimEvent = // eslint-disable-line no-extra-semi
+// @EXPORT@
+(function() {
   'use strict';
 
   var
@@ -102,4 +104,6 @@
       }
     }
   };
-})();
+})()
+// @/EXPORT@
+;
