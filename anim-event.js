@@ -6,11 +6,7 @@
  * Licensed under the MIT license.
  */
 
-/* exported AnimEvent */
-
-;var AnimEvent = // eslint-disable-line no-extra-semi
-// @EXPORT@
-(function() {
+var AnimEvent = (function() {
   'use strict';
 
   var
@@ -104,6 +100,6 @@
       }
     }
   };
-})()
-// @/EXPORT@
-;
+})();
+
+module.exports = AnimEvent;

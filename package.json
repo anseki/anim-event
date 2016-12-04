@@ -1,6 +1,6 @@
 {
   "name": "anim-event",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "title": "AnimEvent",
   "description": "Event Manager for Animation",
   "keywords": [
@@ -16,6 +16,13 @@
     "drag"
   ],
   "main": "anim-event.js",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  },
+  "scripts": {
+    "build": "webpack --mode=build",
+    "dev": "webpack --mode=dev"
+  },
   "homepage": "https://github.com/anseki/anim-event",
   "repository": {
     "type": "git",

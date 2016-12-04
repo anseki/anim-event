@@ -1,4 +1,7 @@
 {
-  "extends": "../../_common/eslintrc.json",
+  "extends": [
+    "../../_common/eslintrc.json",
+    "../../_common/eslintrc-webpack.json"
+  ],
   "env": {"browser": true}
 }
