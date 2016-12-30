@@ -1,6 +1,6 @@
 {
   "name": "anim-event",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "title": "AnimEvent",
   "description": "Event Manager for Animation",
   "keywords": [
@@ -15,7 +15,8 @@
     "mousemove",
     "drag"
   ],
-  "main": "./src/anim-event.js",
+  "main": "anim-event.min.js",
+  "jsnext:main": "./src/anim-event.js",
   "devDependencies": {
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
