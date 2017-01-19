@@ -81,7 +81,7 @@ Object.defineProperty(exports, "__esModule", {
  * AnimEvent
  * https://github.com/anseki/anim-event
  *
- * Copyright (c) 2016 anseki
+ * Copyright (c) 2017 anseki
  * Licensed under the MIT license.
  */
 
