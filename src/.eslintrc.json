@@ -1,8 +1,4 @@
 {
-  "root": true,
-  "extends": [
-    "../../../_common/eslintrc.json"
-  ],
   "env": {"browser": true, "es6": true},
   "parserOptions": {"sourceType": "module"}
 }
