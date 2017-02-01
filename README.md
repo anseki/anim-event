@@ -1,6 +1,6 @@
 # AnimEvent
 
-[![npm](https://img.shields.io/npm/v/anim-event.svg)](https://www.npmjs.com/package/anim-event) [![GitHub issues](https://img.shields.io/github/issues/anseki/anim-event.svg)](https://github.com/anseki/anim-event/issues) [![dependencies](https://img.shields.io/badge/dependencies-No%20dependency-brightgreen.svg)]() [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE-MIT)
+[![npm](https://img.shields.io/npm/v/anim-event.svg)](https://www.npmjs.com/package/anim-event) [![GitHub issues](https://img.shields.io/github/issues/anseki/anim-event.svg)](https://github.com/anseki/anim-event/issues) [![dependencies](https://img.shields.io/badge/dependencies-No%20dependency-brightgreen.svg)](package.json) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE-MIT)
 
 Super Simple Event Manager for Animation
 
