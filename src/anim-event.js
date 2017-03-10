@@ -35,13 +35,14 @@ let
 
 // [DEBUG]
 const requestAnimSave = requestAnim, cancelAnimSave = cancelAnim;
-window.disableAnimEvent = () => {
-  requestAnim = (callback => { setTimeout(callback, MSPF); });
-  cancelAnim = (requestID => { clearTimeout(requestID); });
-};
-window.enableAnimEvent = () => {
-  requestAnim = requestAnimSave;
-  cancelAnim = cancelAnimSave;
+window.AnimEventByTimer = byTimer => {
+  if (byTimer) {
+    requestAnim = callback => { setTimeout(callback, MSPF); };
+    cancelAnim = requestID => { clearTimeout(requestID); };
+  } else {
+    requestAnim = requestAnimSave;
+    cancelAnim = cancelAnimSave;
+  }
 };
 // [/DEBUG]
 
