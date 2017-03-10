@@ -24,12 +24,12 @@ let
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.msRequestAnimationFrame ||
-    (callback => { setTimeout(callback, MSPF); }),
+    (callback => setTimeout(callback, MSPF)),
   cancelAnim = window.cancelAnimationFrame ||
     window.mozCancelAnimationFrame ||
     window.webkitCancelAnimationFrame ||
     window.msCancelAnimationFrame ||
-    (requestID => { clearTimeout(requestID); }),
+    (requestID => clearTimeout(requestID)),
 
   requestID, lastFrameTime = Date.now();
 
@@ -37,8 +37,8 @@ let
 const requestAnimSave = requestAnim, cancelAnimSave = cancelAnim;
 window.AnimEventByTimer = byTimer => {
   if (byTimer) {
-    requestAnim = callback => { setTimeout(callback, MSPF); };
-    cancelAnim = requestID => { clearTimeout(requestID); };
+    requestAnim = callback => setTimeout(callback, MSPF);
+    cancelAnim = requestID => clearTimeout(requestID);
   } else {
     requestAnim = requestAnimSave;
     cancelAnim = cancelAnimSave;

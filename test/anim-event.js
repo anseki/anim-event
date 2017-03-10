@@ -100,10 +100,10 @@ KEEP_LOOP = 500,
 tasks = [];
 
 var requestAnim = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-  setTimeout(callback, MSPF);
+  return setTimeout(callback, MSPF);
 },
     cancelAnim = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.msCancelAnimationFrame || function (requestID) {
-  clearTimeout(requestID);
+  return clearTimeout(requestID);
 },
     requestID = void 0,
     lastFrameTime = Date.now();
@@ -114,10 +114,10 @@ var requestAnimSave = requestAnim,
 window.AnimEventByTimer = function (byTimer) {
   if (byTimer) {
     requestAnim = function requestAnim(callback) {
-      setTimeout(callback, MSPF);
+      return setTimeout(callback, MSPF);
     };
     cancelAnim = function cancelAnim(requestID) {
-      clearTimeout(requestID);
+      return clearTimeout(requestID);
     };
   } else {
     requestAnim = requestAnimSave;
