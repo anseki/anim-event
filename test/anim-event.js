@@ -111,17 +111,18 @@ var requestAnim = window.requestAnimationFrame || window.mozRequestAnimationFram
 // [DEBUG]
 var requestAnimSave = requestAnim,
     cancelAnimSave = cancelAnim;
-window.disableAnimEvent = function () {
-  requestAnim = function requestAnim(callback) {
-    setTimeout(callback, MSPF);
-  };
-  cancelAnim = function cancelAnim(requestID) {
-    clearTimeout(requestID);
-  };
-};
-window.enableAnimEvent = function () {
-  requestAnim = requestAnimSave;
-  cancelAnim = cancelAnimSave;
+window.AnimEventByTimer = function (byTimer) {
+  if (byTimer) {
+    requestAnim = function requestAnim(callback) {
+      setTimeout(callback, MSPF);
+    };
+    cancelAnim = function cancelAnim(requestID) {
+      clearTimeout(requestID);
+    };
+  } else {
+    requestAnim = requestAnimSave;
+    cancelAnim = cancelAnimSave;
+  }
 };
 // [/DEBUG]
 
