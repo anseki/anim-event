@@ -6,22 +6,9 @@
  * Licensed under the MIT license.
  */
 
-// *** Currently, this code except `export` is not ES2015. ***
-
-var
+const
   MSPF = 1000 / 60, // ms/frame (FPS: 60)
   KEEP_LOOP = 500,
-
-  requestAnim = window.requestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function(callback) { setTimeout(callback, MSPF); },
-  cancelAnim = window.cancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.msCancelAnimationFrame ||
-    function(requestID) { clearTimeout(requestID); },
 
   /**
    * @typedef {Object} task
@@ -30,18 +17,43 @@ var
    */
 
   /** @type {task[]} */
-  tasks = [],
+  tasks = [];
+
+let
+  requestAnim = window.requestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    (callback => { setTimeout(callback, MSPF); }),
+  cancelAnim = window.cancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.msCancelAnimationFrame ||
+    (requestID => { clearTimeout(requestID); }),
+
   requestID, lastFrameTime = Date.now();
 
+// [DEBUG]
+const requestAnimSave = requestAnim, cancelAnimSave = cancelAnim;
+window.disableAnimEvent = () => {
+  requestAnim = (callback => { setTimeout(callback, MSPF); });
+  cancelAnim = (requestID => { clearTimeout(requestID); });
+};
+window.enableAnimEvent = () => {
+  requestAnim = requestAnimSave;
+  cancelAnim = cancelAnimSave;
+};
+// [/DEBUG]
+
 function step() {
-  var called, next;
+  let called, next;
 
   if (requestID) {
     cancelAnim.call(window, requestID);
     requestID = null;
   }
 
-  tasks.forEach(function(task) {
+  tasks.forEach(task => {
     if (task.event) {
       task.listener(task.event);
       task.event = null;
@@ -59,8 +71,8 @@ function step() {
 }
 
 function indexOfTasks(listener) {
-  var index = -1;
-  tasks.some(function(task, i) {
+  let index = -1;
+  tasks.some((task, i) => {
     if (task.listener === listener) {
       index = i;
       return true;
@@ -70,16 +82,16 @@ function indexOfTasks(listener) {
   return index;
 }
 
-var AnimEvent = {
+const AnimEvent = {
   /**
    * @param {function} listener - An event listener.
    * @returns {(function|null)} - A wrapped event listener.
    */
   add: function(listener) {
-    var task;
+    let task;
     if (indexOfTasks(listener) === -1) {
       tasks.push((task = {listener: listener}));
-      return function(event) {
+      return event => {
         task.event = event;
         if (!requestID) { step(); }
       };
@@ -89,7 +101,7 @@ var AnimEvent = {
   },
 
   remove: function(listener) {
-    var iRemove;
+    let iRemove;
     if ((iRemove = indexOfTasks(listener)) > -1) {
       tasks.splice(iRemove, 1);
       if (!tasks.length && requestID) {
