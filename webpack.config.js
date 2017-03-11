@@ -2,20 +2,20 @@
 
 'use strict';
 
-const webpack = require('webpack'),
+const
+  BASE_NAME = 'anim-event',
+  OBJECT_NAME = 'AnimEvent',
+
+  webpack = require('webpack'),
   path = require('path'),
   PKG = require('./package'),
 
   BUILD = process.env.NODE_ENV === 'production',
 
   SRC_PATH = path.resolve(__dirname, 'src'),
-  ENTRY_PATH = path.resolve(SRC_PATH, 'anim-event.js'),
+  ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`),
   BUILD_PATH = BUILD ? __dirname : path.resolve(__dirname, 'test'),
-  BUILD_FILE = 'anim-event' + (BUILD ? '.min.js' : '.js'),
-
-  IMPORTED_PACKAGES_PATH = [
-  ].map(packageName => require.resolve(packageName) // Get package root path
-    .replace(new RegExp(`^(.*[/\\\\]node_modules[/\\\\]${packageName}[/\\\\]).*$`), '$1')),
+  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min.js' : '.js'}`,
 
   BABEL_RULE = {
     loader: 'babel-loader',
@@ -51,15 +51,13 @@ module.exports = {
   output: {
     path: BUILD_PATH,
     filename: BUILD_FILE,
-    library: 'AnimEvent',
+    library: OBJECT_NAME,
     libraryTarget: 'var'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: absPath => !IMPORTED_PACKAGES_PATH.find(packagePath => absPath.indexOf(packagePath) === 0) &&
-          absPath.split(path.sep).includes('node_modules'),
         use: [
           BABEL_RULE,
           {
@@ -67,7 +65,7 @@ module.exports = {
             options: {
               procedure: function(content) {
                 return BUILD ?
-                  preProc('DEBUG', content, this.resourcePath, IMPORTED_PACKAGES_PATH.concat(SRC_PATH)) :
+                  preProc('DEBUG', content, this.resourcePath, SRC_PATH) :
                   content;
               }
             }
