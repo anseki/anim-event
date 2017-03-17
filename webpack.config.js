@@ -15,7 +15,7 @@ const
   SRC_PATH = path.resolve(__dirname, 'src'),
   ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`),
   BUILD_PATH = BUILD ? __dirname : path.resolve(__dirname, 'test'),
-  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min.js' : '.js'}`,
+  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min' : ''}.js`,
 
   BABEL_RULE = {
     loader: 'babel-loader',
