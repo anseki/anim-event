@@ -10,20 +10,14 @@ const
   path = require('path'),
   PKG = require('./package'),
 
+  RULES = require('./webpack.config.rules.js'),
+
   BUILD = process.env.NODE_ENV === 'production',
 
   SRC_PATH = path.resolve(__dirname, 'src'),
   ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`),
   BUILD_PATH = BUILD ? __dirname : path.resolve(__dirname, 'test'),
-  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min' : ''}.js`,
-
-  BABEL_RULE = {
-    loader: 'babel-loader',
-    options: {
-      presets: ['es2015'],
-      plugins: ['add-module-exports']
-    }
-  };
+  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min' : ''}.js`;
 
 module.exports = {
   entry: ENTRY_PATH,
@@ -33,20 +27,7 @@ module.exports = {
     library: OBJECT_NAME,
     libraryTarget: 'var'
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: [
-          BABEL_RULE,
-          BUILD ? {
-            loader: 'pre-proc-loader',
-            options: {removeTag: {tag: 'DEBUG', pathTest: SRC_PATH}}
-          } : null
-        ].filter(loader => !!loader)
-      }
-    ]
-  },
+  module: {rules: RULES},
   devtool: BUILD ? false : 'source-map',
   plugins: BUILD ? [
     new webpack.optimize.UglifyJsPlugin({compress: {warnings: true}}),
