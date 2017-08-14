@@ -20,7 +20,7 @@ module.exports = [
       BABEL_RULE,
       BUILD ? {
         loader: 'pre-proc-loader',
-        options: {removeTag: {tag: 'DEBUG', pathTest: SRC_PATH}}
+        options: {removeTag: {tag: 'DEBUG'}}
       } : null
     ].filter(loader => !!loader)
   }
