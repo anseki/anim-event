@@ -167,7 +167,7 @@ function indexOfTasks(listener) {
 var AnimEvent = {
   /**
    * @param {function} listener - An event listener.
-   * @returns {(function|null)} - A wrapped event listener.
+   * @returns {(function|null)} A wrapped event listener.
    */
   add: function add(listener) {
     var task = void 0;
