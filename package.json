@@ -25,6 +25,7 @@
     "cross-env": "^5.0.5",
     "pre-proc": "^0.2.7",
     "pre-proc-loader": "^1.0.8",
+    "skeleton-loader": "^1.1.4",
     "webpack": "^3.5.4"
   },
   "scripts": {

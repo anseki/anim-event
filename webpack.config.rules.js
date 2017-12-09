@@ -3,7 +3,8 @@
 'use strict';
 
 const
-  SRC_PATH = require('path').resolve(__dirname, 'src'),
+  path = require('path'),
+  SRC_PATH = path.resolve(__dirname, 'src'),
   BUILD = process.env.NODE_ENV === 'production',
   BABEL_RULE = {
     loader: 'babel-loader',
@@ -11,7 +12,10 @@ const
       presets: ['es2015'],
       plugins: ['add-module-exports']
     }
-  };
+  },
+
+  BASE_NAME = 'anim-event',
+  ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`);
 
 module.exports = [
   {
@@ -20,8 +24,26 @@ module.exports = [
       BABEL_RULE,
       BUILD ? {
         loader: 'pre-proc-loader',
-        options: {removeTag: {tag: 'DEBUG'}}
-      } : null
-    ].filter(loader => !!loader)
+        options: {
+          removeTag: {tag: 'DEBUG'}
+        }
+      } : {
+        loader: 'skeleton-loader',
+        options: {
+          procedure: function(content) {
+            const preProc = require('pre-proc');
+            if (this.resourcePath === ENTRY_PATH) {
+              // Save the source code after preProc has been applied.
+              const destPath = path.resolve(SRC_PATH, `${BASE_NAME}.proc.js`);
+              require('fs').writeFileSync(destPath,
+                '/*\n    DON\'T MANUALLY EDIT THIS FILE\n*/\n\n' +
+                preProc.removeTag('DEBUG', content));
+              console.log(`Output: ${destPath}`);
+            }
+            return content;
+          }
+        }
+      }
+    ]
   }
 ];

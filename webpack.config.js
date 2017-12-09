@@ -14,8 +14,7 @@ const
 
   BUILD = process.env.NODE_ENV === 'production',
 
-  SRC_PATH = path.resolve(__dirname, 'src'),
-  ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`),
+  ENTRY_PATH = path.resolve(__dirname, 'src', `${BASE_NAME}.js`),
   BUILD_PATH = BUILD ? __dirname : path.resolve(__dirname, 'test'),
   BUILD_FILE = `${BASE_NAME}${BUILD ? '.min' : ''}.js`;
 
