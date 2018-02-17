@@ -16,6 +16,7 @@
     "drag"
   ],
   "main": "anim-event.min.js",
+  "module": "./src/anim-event.js",
   "jsnext:main": "./src/anim-event.js",
   "devDependencies": {
     "babel-core": "^6.25.0",
