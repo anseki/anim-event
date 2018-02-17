@@ -18,6 +18,14 @@
   "main": "anim-event.min.js",
   "module": "./src/anim-event.js",
   "jsnext:main": "./src/anim-event.js",
+  "files": [
+    "anim-event.min.js",
+    "src/*.js",
+    "!src/*.proc.*",
+    "webpack.config.rules.js",
+    "bower.json",
+    "LICENSE-MIT"
+  ],
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
