@@ -66,14 +66,10 @@ var AnimEvent =
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*
  * AnimEvent
  * https://github.com/anseki/anim-event
@@ -196,9 +192,8 @@ var AnimEvent = {
   }
 };
 
-exports.default = AnimEvent;
-module.exports = exports["default"];
+/* harmony default export */ __webpack_exports__["default"] = (AnimEvent);
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
 //# sourceMappingURL=anim-event.js.map
