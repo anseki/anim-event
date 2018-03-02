@@ -20,8 +20,7 @@
   "jsnext:main": "anim-event.esm.js",
   "files": [
     "anim-event?(-debug).@(min|esm).js",
-    "bower.json",
-    "LICENSE-MIT"
+    "bower.json"
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
