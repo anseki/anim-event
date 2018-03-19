@@ -16,10 +16,10 @@
     "drag"
   ],
   "main": "anim-event.min.js",
-  "module": "anim-event.esm.js",
-  "jsnext:main": "anim-event.esm.js",
+  "module": "anim-event.mjs",
+  "jsnext:main": "anim-event.mjs",
   "files": [
-    "anim-event?(-debug).@(min|esm).js",
+    "anim-event?(-debug).@(min.js|mjs)",
     "bower.json"
   ],
   "devDependencies": {
@@ -30,7 +30,8 @@
     "pre-proc": "^0.2.8",
     "pre-proc-loader": "^1.0.9",
     "skeleton-loader": "^1.1.5",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --verbose",
