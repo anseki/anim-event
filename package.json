@@ -16,10 +16,10 @@
     "drag"
   ],
   "main": "anim-event.min.js",
-  "module": "anim-event.mjs",
-  "jsnext:main": "anim-event.mjs",
+  "module": "anim-event.esm.js",
+  "jsnext:main": "anim-event.esm.js",
   "files": [
-    "anim-event?(-debug).@(min.js|mjs)",
+    "anim-event?(-debug).@(min.js|esm.js)",
     "bower.json"
   ],
   "devDependencies": {
