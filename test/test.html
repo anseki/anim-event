@@ -39,7 +39,7 @@ body {
 </head>
 <body>
 
-  <div id="stage"></div>
+  <div id="stage">Move the mouse here</div>
   <div class="view">
     <div id="bar1" class="bar"></div>
     <div id="count1" class="count"></div>
@@ -61,19 +61,30 @@ var stage = document.getElementById('stage'),
   style1 = bar1.style,
   style2 = bar2.style,
   countValue1 = 0,
-  countValue2 = 0;
+  countValue2 = 0,
 
-// Normal
-stage.addEventListener('mousemove', function(event) {
-  style1.width = event.pageX + 'px';
-  count1.textContent = ++countValue1;
-}, false);
+  // Normal
+  listenerNormal = function(event) {
+    style1.width = event.pageX + 'px';
+    count1.textContent = ++countValue1;
+  },
+  // AnimEvent
+  listenerAnimEvent = AnimEvent.add(function(event) {
+    style2.width = event.pageX + 'px';
+    count2.textContent = ++countValue2;
+  });
 
-// AnimEvent
-stage.addEventListener('mousemove', AnimEvent.add(function(event) {
-  style2.width = event.pageX + 'px';
-  count2.textContent = ++countValue2;
-}), false);
+stage.addEventListener('mousemove', listenerNormal, false);
+stage.addEventListener('mouseenter', listenerNormal, false);
+stage.addEventListener('mouseleave', listenerNormal, false);
+stage.addEventListener('mouseover', listenerNormal, false);
+stage.addEventListener('mouseout', listenerNormal, false);
+
+stage.addEventListener('mousemove', listenerAnimEvent, false);
+stage.addEventListener('mouseenter', listenerAnimEvent, false);
+stage.addEventListener('mouseleave', listenerAnimEvent, false);
+stage.addEventListener('mouseover', listenerAnimEvent, false);
+stage.addEventListener('mouseout', listenerAnimEvent, false);
 
   </script>
 

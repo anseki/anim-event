@@ -10,6 +10,8 @@ AnimEvent controls timing of calling event listeners with [`requestAnimationFram
 
 AnimEvent works like [lodash's `throttle` function](https://lodash.com/docs#throttle), but it uses `requestAnimationFrame` that is more optimized for animation, instead of "wait-time".
 
+Example: Open a file `test/test.html` by web browser.
+
 ## Usage
 
 Load AnimEvent into your web page.
