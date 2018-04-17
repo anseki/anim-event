@@ -23,7 +23,7 @@ const
   /** @type {task[]} */
   tasks = [];
 
-let
+const
   requestAnim = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -33,9 +33,10 @@ let
     window.mozCancelAnimationFrame ||
     window.webkitCancelAnimationFrame ||
     window.msCancelAnimationFrame ||
-    (requestID => clearTimeout(requestID)),
+    (requestID => clearTimeout(requestID));
 
-  requestID, lastFrameTime = Date.now();
+let lastFrameTime = Date.now(),
+  requestID;
 
 
 function step() {
@@ -80,20 +81,19 @@ const AnimEvent = {
    * @param {function} listener - An event listener.
    * @returns {(function|null)} A wrapped event listener.
    */
-  add: function(listener) {
+  add(listener) {
     let task;
     if (indexOfTasks(listener) === -1) {
-      tasks.push((task = {listener: listener}));
+      tasks.push((task = {listener}));
       return event => {
         task.event = event;
         if (!requestID) { step(); }
       };
-    } else {
-      return null;
     }
+    return null;
   },
 
-  remove: function(listener) {
+  remove(listener) {
     let iRemove;
     if ((iRemove = indexOfTasks(listener)) > -1) {
       tasks.splice(iRemove, 1);

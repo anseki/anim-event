@@ -29,9 +29,10 @@ var requestAnim = window.requestAnimationFrame || window.mozRequestAnimationFram
 },
     cancelAnim = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame || window.msCancelAnimationFrame || function (requestID) {
   return clearTimeout(requestID);
-},
-    requestID = void 0,
-    lastFrameTime = Date.now();
+};
+
+var lastFrameTime = Date.now(),
+    requestID = void 0;
 
 function step() {
   var called = void 0,
@@ -89,11 +90,9 @@ var AnimEvent = {
           step();
         }
       };
-    } else {
-      return null;
     }
+    return null;
   },
-
   remove: function remove(listener) {
     var iRemove = void 0;
     if ((iRemove = indexOfTasks(listener)) > -1) {
