@@ -30,7 +30,7 @@
     "pre-proc": "^1.0.2",
     "pre-proc-loader": "^3.0.3",
     "skeleton-loader": "^2.0.0",
-    "webpack": "^4.5.0",
+    "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
   },
   "scripts": {
