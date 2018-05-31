@@ -44,9 +44,10 @@ function step() {
   }
 
   tasks.forEach(function (task) {
-    if (task.event) {
-      task.listener(task.event);
-      task.event = null;
+    var event = void 0;
+    if (event = task.event) {
+      task.event = null; // Clear it before `task.listener()` because that might fire another event.
+      task.listener(event);
       called = true;
     }
   });
