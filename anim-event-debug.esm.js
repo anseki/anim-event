@@ -9,11 +9,9 @@
  * Copyright (c) 2018 anseki
  * Licensed under the MIT license.
  */
-
 var MSPF = 1000 / 60,
     // ms/frame (FPS: 60)
 KEEP_LOOP = 500,
-
 
 /**
  * @typedef {Object} task
@@ -23,10 +21,10 @@ KEEP_LOOP = 500,
 
 /** @type {task[]} */
 tasks = [];
-
 /* [DEBUG/]
 const
 [DEBUG/] */
+
 var // [DEBUG/]
 requestAnim = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
   return setTimeout(callback, MSPF);
@@ -36,16 +34,17 @@ requestAnim = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
 };
 
 var lastFrameTime = Date.now(),
-    requestID = void 0;
+    requestID; // [DEBUG]
 
-// [DEBUG]
 var requestAnimSave = requestAnim,
     cancelAnimSave = cancelAnim;
+
 window.AnimEventByTimer = function (byTimer) {
   if (byTimer) {
     requestAnim = function requestAnim(callback) {
       return setTimeout(callback, MSPF);
     };
+
     cancelAnim = function cancelAnim(requestID) {
       return clearTimeout(requestID);
     };
@@ -53,12 +52,11 @@ window.AnimEventByTimer = function (byTimer) {
     requestAnim = requestAnimSave;
     cancelAnim = cancelAnimSave;
   }
-};
-// [/DEBUG]
+}; // [/DEBUG]
+
 
 function step() {
-  var called = void 0,
-      next = void 0;
+  var called, next;
 
   if (requestID) {
     cancelAnim.call(window, requestID);
@@ -66,9 +64,11 @@ function step() {
   }
 
   tasks.forEach(function (task) {
-    var event = void 0;
+    var event;
+
     if (event = task.event) {
       task.event = null; // Clear it before `task.listener()` because that might fire another event.
+
       task.listener(event);
       called = true;
     }
@@ -81,6 +81,7 @@ function step() {
     // Go on for a while
     next = true;
   }
+
   if (next) {
     requestID = requestAnim.call(window, step);
   }
@@ -93,6 +94,7 @@ function indexOfTasks(listener) {
       index = i;
       return true;
     }
+
     return false;
   });
   return index;
@@ -104,22 +106,29 @@ var AnimEvent = {
    * @returns {(function|null)} A wrapped event listener.
    */
   add: function add(listener) {
-    var task = void 0;
+    var task;
+
     if (indexOfTasks(listener) === -1) {
-      tasks.push(task = { listener: listener });
+      tasks.push(task = {
+        listener: listener
+      });
       return function (event) {
         task.event = event;
+
         if (!requestID) {
           step();
         }
       };
     }
+
     return null;
   },
   remove: function remove(listener) {
-    var iRemove = void 0;
+    var iRemove;
+
     if ((iRemove = indexOfTasks(listener)) > -1) {
       tasks.splice(iRemove, 1);
+
       if (!tasks.length && requestID) {
         cancelAnim.call(window, requestID);
         requestID = null;
@@ -127,5 +136,4 @@ var AnimEvent = {
     }
   }
 };
-
 export default AnimEvent;
