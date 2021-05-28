@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
  * AnimEvent
  * https://github.com/anseki/anim-event
  *
- * Copyright (c) 2018 anseki
+ * Copyright (c) 2021 anseki
  * Licensed under the MIT license.
  */
 var MSPF = 1000 / 60,
