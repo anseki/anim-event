@@ -30,7 +30,7 @@
     "cross-env": "^7.0.3",
     "pre-proc": "^1.0.2",
     "skeleton-loader": "^2.0.0",
-    "webpack": "^4.46.0",
+    "webpack": "^5.75.0",
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
